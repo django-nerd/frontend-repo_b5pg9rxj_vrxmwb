@@ -1,3 +1,6 @@
+import TestimonialTicker from './TestimonialTicker'
+import ParallaxImage from './ParallaxImage'
+
 export default function Gallery() {
   const images = [
     'https://images.unsplash.com/photo-1441974231531-c6227db76b6e?q=80&w=1200&auto=format&fit=crop',
@@ -18,10 +21,12 @@ export default function Gallery() {
 
         <div className="mt-10 grid grid-cols-2 md:grid-cols-3 gap-4">
           {images.map((src, i) => (
-            <div key={i} className="aspect-[4/3] rounded-2xl overflow-hidden ring-1 ring-emerald-500/20 shadow-sm bg-slate-100">
-              <img src={src} alt="Garden project" className="w-full h-full object-cover" />
-            </div>
+            <ParallaxImage key={i} src={src} alt="Garden project" depth={(i % 3 + 1) * 0.08} className="aspect-[4/3] ring-1 ring-emerald-500/20 shadow-sm bg-slate-100" />
           ))}
+        </div>
+
+        <div className="mt-10">
+          <TestimonialTicker />
         </div>
       </div>
     </section>

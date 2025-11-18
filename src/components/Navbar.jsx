@@ -1,7 +1,8 @@
 import { useState } from 'react'
 import { Menu, Leaf, Phone, MapPin } from 'lucide-react'
+import SeasonalToggle from './SeasonalToggle'
 
-export default function Navbar() {
+export default function Navbar({ seasonalMode = 'default', onToggleSeason }) {
   const [open, setOpen] = useState(false)
 
   const scrollTo = (id) => {
@@ -32,6 +33,7 @@ export default function Navbar() {
             </nav>
 
             <div className="hidden md:flex items-center gap-3">
+              <SeasonalToggle mode={seasonalMode} onToggle={onToggleSeason} />
               <span className="hidden lg:inline-flex items-center gap-2 text-slate-600">
                 <MapPin className="w-4 h-4 text-emerald-600" /> Budapest
               </span>
@@ -48,6 +50,7 @@ export default function Navbar() {
           {open && (
             <div className="md:hidden border-t border-emerald-500/20 px-5 py-3 bg-white/60">
               <div className="grid gap-2 text-slate-700">
+                <div className="py-2"><SeasonalToggle mode={seasonalMode} onToggle={onToggleSeason} /></div>
                 <button className="py-2 text-left" onClick={() => scrollTo('services')}>Services</button>
                 <button className="py-2 text-left" onClick={() => scrollTo('gallery')}>Gallery</button>
                 <button className="py-2 text-left" onClick={() => scrollTo('about')}>About</button>
